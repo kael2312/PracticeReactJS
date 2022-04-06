@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(name){
+                this.name = name
+            }
+            
+            get getName(){
+                return this.name
+            }
+
+            set setName(val){
+                this.name = val
+            }
+        }
+
+        class Programmer extends Person{
+            constructor(name, language){
+                super(name);
+                this.language = language
+            }
+            
+            get getLanguage(){
+                return this.language
+            }
+
+            set setLanguage(val){
+                this.language = val
+            }
+
+            writeCode(){
+                console.log("I'm " + this.getName + " and I'm " + this.getLanguage);
+            }
+        }
+
+        let person1 = new Programmer("Hoang", "JavaScript")
+        person1.writeCode();
+        person1.setName = "Nhat";
+        person1.setLanguage = "CSharp";
+        person1.writeCode();
+    </script>
+</body>
+</html>
