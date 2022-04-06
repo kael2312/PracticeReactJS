@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Information{
+            constructor(name, description){
+                this.name = name;
+                this.description = description
+            }
+            
+            static calculate(param = 1) {  
+                return param*3
+            }
+        }
+
+        class Shape extends Information{
+            constructor(name, description, width){
+                super(name, description)
+            }
+
+            static calculate(number){
+                return number;
+            }
+            
+        }
+
+        var shape1 = new Shape("circle", "description")
+        console.log(shape1.name);
+        console.log(shape1.description);
+        console.log(Shape.calculate(5));
+    </script>
+</body>
+</html>
