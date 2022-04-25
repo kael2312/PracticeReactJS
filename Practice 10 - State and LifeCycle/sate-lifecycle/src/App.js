@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
 import TodoList from "./components/TodoList/todo-list";
+import Student from "./components/StudentManagement/student";
 
 function App() {
     const [todoList, setTodoList] = useState([]);
@@ -20,6 +21,7 @@ function App() {
                 })}
             </ul>
             <TodoList addTodo={addTodo}></TodoList>
+            <Student></Student>
         </div>
     );
 }
