@@ -8,19 +8,15 @@ Example.propTypes = {
 function Example(props) {
 
     const [inputText, setInputText] = useState('')
-
-    // useEffect(() => {
-
-    // }, [inputText])
-
     const onInputChange = (e) => {
         const newValue = e.target.value
         setInputText(newValue)
+        console.log(inputText);
     }
 
     return (
         <div>
-            <input type="text" onChange={onInputChange} />
+            <input type="text" onKeyUp={onInputChange} />
 
             <div>
             Hello: {inputText}
