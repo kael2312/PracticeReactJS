@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import BookList from './book-list';
 import BookForm from './book-form';
 import casual from "casual-browserify";
+import { useDispatch, useSelector } from "react-redux";
 
 BookManagement.propTypes = {
     
@@ -10,32 +11,29 @@ BookManagement.propTypes = {
 
 function BookManagement(props) {
 
-    const [bookList, setBookList] = useState([])
-    const [bookItem, setBookItem] = useState({})
+    const bookList = useSelector(state => state.bookList)
+    const dispatch = useDispatch()
+
+
 
     const addBook = (value) => {
-        const newBookList = [...bookList]
-        const bookId = casual.uuid
-        const book = {            
-            bookId: bookId,
-            title: value.title,
-            quantity: value.quantity
-        }
-
-        newBookList.push(book)
-        setBookList(newBookList)
+        const id = casual.uuid
+        const newBook = {...value, id: id}
+        dispatch(addBook(newBook))       
     }
 
+    
+
     const editBook = (value) => {
-        setBookItem(value)
+        
     }
 
     const deleteBook = (value) => {
-        console.log(value);
+        
     }
     return (
         <div>
-            <BookForm addBook={addBook} bookItem={bookItem}></BookForm>
+            <BookForm addBook={addBook}></BookForm>
             <BookList bookList={bookList} editBook={editBook} deleteBook={deleteBook}></BookList>
         </div>
     );

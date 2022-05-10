@@ -1,28 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import * as yup from "yup";
 import { Formik, Form, FastField, ErrorMessage } from "formik";
 
 BookForm.propTypes = {
     addBook: PropTypes.func,
-    bookItem: PropTypes.object,
 };
 
 BookForm.defaultProps = {
     addBook: null,
-    bookItem: null
 }
 
 function BookForm(props) {
-    const {addBook, bookItem} = props
+    const {addBook} = props
     const formValidation = yup.object().shape({
         title: yup.string().required("This field is required"),
         quantity: yup.number().min(1, "Quantity more than 0"),
-    });
+    });    
+
     const formikProps = {
         initialValues: {
-            title: bookItem ? bookItem.title : "",
-            quantity: bookItem ? bookItem.quantity : 0,
+            title: "",
+            quantity: 0,
         },
         onSubmit: (values, {resetForm}) => {
             if (addBook) {
@@ -32,6 +31,9 @@ function BookForm(props) {
         },
         validationSchema: formValidation,
     };
+
+    
+
     return (
         <Formik {...formikProps}>
             <div className="container">

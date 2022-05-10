@@ -7,10 +7,10 @@ SignUpForm.propTypes = {};
 
 function SignUpForm(props) {
     const formValidator = Yup.object().shape({
-        username: Yup.string()
-            .required("Please fill out all the fields!!!")
-            .min(2, "Minimum 2 character")
-            .matches(/^[A-Za-z]+$/, "Only contain A-Z and a-z"),
+        // username: Yup.string()
+        //     .required("Please fill out all the fields!!!")
+        //     .min(2, "Minimum 2 character")
+        //     .matches(/^[A-Za-z]+$/, "Only contain A-Z and a-z"),
         email: Yup.string()
             .required("Please fill out all the fields!!!")
             .matches(/^([A-Za-z0-9+-])+@([A-Za-z0-9-])+\.([A-Za-z0-9-])+$/, 'Please enter a valid email address'),
@@ -18,23 +18,23 @@ function SignUpForm(props) {
             .required("Please fill out all the fields!!!")
             .matches(/^([A-Za-z0-9!@#$%^&+=._-])+$/, "Please enter a valid password")
             .min(6, "Minimum 6 character"),
-        confirmPassword: Yup.string()
-            .required("Please fill out all the fields!!!")
-            .oneOf([Yup.ref('password'), null], 'Passwords must match'),
+        // confirmPassword: Yup.string()
+        //     .required("Please fill out all the fields!!!")
+        //     .oneOf([Yup.ref('password'), null], 'Passwords must match'),
     });
 
     const formikProps = {
         initialValues: {
-            username: '',
+            //username: '',
             email: '',
             password: '',
-            confirmPassword: ''
+            //confirmPassword: ''
         },
         onSubmit: (values) => {
-            if (values.username === '' || values.email === '' || values.password === '' || values.confirmPassword === '') {
+            if (values.email === '' || values.password === '') {
                 alert('Please fill out all the fields!!!')
             }else {
-                alert("“Sign up successfully!!!”")
+                alert("“Login successfully!!!”")
             }
         },
         validationSchema: formValidator
@@ -44,9 +44,9 @@ function SignUpForm(props) {
             <div className="container">
                 <div className="col-md-12 mt-5">
                     <Form>
-                        <h4 className="mb-3">Sign Up</h4>
+                        <h4 className="mb-3">Login</h4>
 
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="firstname">Username</label>
                                 <FastField
@@ -56,7 +56,7 @@ function SignUpForm(props) {
                                 ></FastField>
                                 <ErrorMessage component="div" className="text-danger" name="username"></ErrorMessage>
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="firstname">Email</label>
@@ -79,7 +79,7 @@ function SignUpForm(props) {
                                 <ErrorMessage component="div" className="text-danger" name="password"></ErrorMessage>
                             </div>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-6 mb-3">
                                 <label htmlFor="firstname">Confirm password</label>
                                 <FastField
@@ -89,7 +89,7 @@ function SignUpForm(props) {
                                 ></FastField>
                                 <ErrorMessage component="div" className="text-danger" name="confirmPassword"></ErrorMessage>
                             </div>
-                        </div>
+                        </div> */}
 
                         <hr className="mb-4" />
                         <button
