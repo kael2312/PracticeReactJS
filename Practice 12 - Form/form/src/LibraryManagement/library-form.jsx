@@ -1,40 +1,32 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import * as yup from "yup";
 import { Formik, Form, FastField, ErrorMessage } from "formik";
 
-BookForm.propTypes = {
-    submitForm: PropTypes.func,
-    initialValues: PropTypes.object,
+LibraryForm.propTypes = {
+    
 };
 
-BookForm.defaultProps = {
-    submitForm: null,
-    initialValues: {
-        id: "",
-        title: "",
-        quantity: 0,
-    },
-};
+function LibraryForm(props) {
+    
+    const { submitForm, initialFormValue } = props;
 
-function BookForm(props) {
-    const { submitForm, initialValue } = props;
     const formValidation = yup.object().shape({
         title: yup.string().required("This field is required"),
-        quantity: yup.number().min(1, "Quantity more than 0"),
-    });
-
-    
+        quantity: yup.number()
+            .required("This field is required")
+            .min(1, "Quantity more than 0"),
+    });    
 
     return (
         <Formik
-            enableReinitialize={true}
-            initialValues={initialValue}
+            enableReinitialize={true} // Khi các giá trị trên form thay đổi sẽ re render lại form
+            initialValues={initialFormValue} // Các giá trị init trên Form sẽ được nhận từ component LibraryManagement qua props
             onSubmit={(values, { resetForm }) => {
                     if (submitForm) {
-                        submitForm(values);
+                        submitForm(values); // Gửi các giá trị trên form cho component LibraryManagement qua props
                     }
-                resetForm();
+                resetForm(); // Khi submit xong thì xóa các giá trị trên form
             }}
             validationSchema={formValidation}
         >
@@ -88,4 +80,4 @@ function BookForm(props) {
     );
 }
 
-export default BookForm;
+export default LibraryForm;

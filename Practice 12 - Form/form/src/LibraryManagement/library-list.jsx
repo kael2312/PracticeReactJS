@@ -1,0 +1,67 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+LibraryList.propTypes = {
+    bookList: PropTypes.array,
+    editBook: PropTypes.func,
+    deleteBook: PropTypes.func
+};
+
+LibraryList.defaultProps = {
+    bookList: [],
+    editBook: null,
+    deleteBook: null,
+};
+
+function LibraryList(props) {
+    const { bookList, editBook, deleteBook } = props;
+
+    const onEditBook = (book) => {
+        if (editBook) {
+            editBook(book)
+        }
+    }
+
+    const onDeleteBook = (bookId) => {
+        if (deleteBook) {
+            deleteBook(bookId)
+        }
+    }
+    return (
+        <div>
+            <div className="container">
+                <div className="col-md-12 mt-5">
+                    <table className="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Number</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {bookList.map((book) => {
+                                return (
+                                    <tr key={book.id}>
+                                        <td>{book.title}</td>
+                                        <td>{book.quantity}</td>
+                                        <td>
+                                            <button className="btn btn-warning mr-2" onClick={() => {onEditBook(book)}}>
+                                                Edit
+                                            </button>
+                                            <button className="btn btn-danger" onClick={() => {onDeleteBook(book.id)}}>
+                                                Delete
+                                            </button>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default LibraryList;

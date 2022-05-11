@@ -22,18 +22,15 @@ function BookManagement(props) {
     const [isAddBook, setIsAddBook] = useState(true)
 
 
-    const addNewBook = (value) => {
+    const submitBookForm = (value) => {
         if (value.id === '') {
             const id = casual.uuid
             const newBook = {...value, id: id}
             dispatch(addBook(newBook)) 
         }else{
             dispatch(updateBook(value))
-        }
-             
-    }
-
-    
+        }            
+    }    
 
     const editBook = (value) => {
         setIsAddBook(false)
@@ -47,7 +44,7 @@ function BookManagement(props) {
     }
     return (
         <div>
-            <BookForm isAddBook={isAddBook} key={initialValue} addBook={addNewBook} initialValue={initialValue}></BookForm>
+            <BookForm key={initialValue} submitForm={submitBookForm} initialValue={initialValue}></BookForm>
             <BookList bookList={bookList} editBook={editBook} deleteBook={deleteCurrentBook}></BookList>
         </div>
     );

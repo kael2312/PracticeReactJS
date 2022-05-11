@@ -1,6 +1,7 @@
 import './App.css';
 import BookManagement from './BookManagement/book-management';
 import ContactForm from './ContactForm/contact-form';
+import LibraryManagement from './LibraryManagement/library-management';
 import SignUpForm from './SignupForm/sign-up-form';
 
 function App() {
@@ -8,7 +9,12 @@ function App() {
     <div className="App">
       {/* <ContactForm></ContactForm> */}
       {/* <SignUpForm></SignUpForm> */}
-      <BookManagement></BookManagement>
+
+      {/* Library with Redux
+      <BookManagement></BookManagement> */}
+
+      Library without Redux
+      <LibraryManagement></LibraryManagement>
     </div>
   );
 }
