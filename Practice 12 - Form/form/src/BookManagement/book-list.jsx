@@ -16,9 +16,9 @@ BookList.defaultProps = {
 function BookList(props) {
     const { bookList, editBook, deleteBook } = props;
 
-    const onEditBook = (bookId) => {
+    const onEditBook = (book) => {
         if (editBook) {
-            editBook(bookId)
+            editBook(book)
         }
     }
 
@@ -42,11 +42,11 @@ function BookList(props) {
                         <tbody>
                             {bookList.map((book) => {
                                 return (
-                                    <tr key={book.bookId}>
+                                    <tr key={book.id}>
                                         <td>{book.title}</td>
                                         <td>{book.quantity}</td>
                                         <td>
-                                            <button className="btn btn-warning mr-2" onClick={() => {onEditBook(book.bookId)}}>
+                                            <button className="btn btn-warning mr-2" onClick={() => {onEditBook(book)}}>
                                                 Edit
                                             </button>
                                             <button className="btn btn-danger" onClick={() => {onDeleteBook(book.bookId)}}>

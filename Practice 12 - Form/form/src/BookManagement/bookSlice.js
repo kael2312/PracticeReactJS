@@ -12,7 +12,7 @@ const bookList = createSlice({
             state.splice(index, 1)
         },
         updateBook: (state, action) => {
-            const index = state.findIndex(book => book.id === action.payload)
+            const index = state.findIndex(book => book.id === action.payload.id)
             if (index >= 0) {
                 state[index] = action.payload
             }

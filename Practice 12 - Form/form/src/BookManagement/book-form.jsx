@@ -5,37 +5,41 @@ import { Formik, Form, FastField, ErrorMessage } from "formik";
 
 BookForm.propTypes = {
     addBook: PropTypes.func,
+    initialValues: PropTypes.object,
+    isAddBook: PropTypes.bool
 };
 
 BookForm.defaultProps = {
     addBook: null,
-}
+    initialValues: {
+        id: "",
+        title: "",
+        quantity: 0,
+    },
+    isAddBook: true
+};
 
 function BookForm(props) {
-    const {addBook} = props
+    const { addBook, initialValue, isAddBook } = props;
     const formValidation = yup.object().shape({
         title: yup.string().required("This field is required"),
         quantity: yup.number().min(1, "Quantity more than 0"),
-    });    
-
-    const formikProps = {
-        initialValues: {
-            title: "",
-            quantity: 0,
-        },
-        onSubmit: (values, {resetForm}) => {
-            if (addBook) {
-                addBook(values)
-            }
-            resetForm();
-        },
-        validationSchema: formValidation,
-    };
+    });
 
     
 
     return (
-        <Formik {...formikProps}>
+        <Formik
+            enableReinitialize={true}
+            initialValues={initialValue}
+            onSubmit={(values, { resetForm }) => {
+                    if (addBook) {
+                        addBook(values);
+                    }
+                resetForm();
+            }}
+            validationSchema={formValidation}
+        >
             <div className="container">
                 <div className="col-md-12 mt-5">
                     <Form>
